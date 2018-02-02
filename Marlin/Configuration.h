@@ -28,7 +28,7 @@
 #define STRING_VERSION "1.0.3"
 
 #define STRING_VERSION_CONFIG_H __DATE__ " " __TIME__ // build date and time
-#define STRING_CONFIG_H_AUTHOR "(Ben Whipker, TFD)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "(Paul Hofnagel, TFI)" // Who made the changes.
 
 // SERIAL_PORT selects which serial port should be used for communication with the host.
 // This allows the connection of wireless adapters (for instance) to non-default port pins.
@@ -48,7 +48,7 @@
 #endif
 
 // Define this to set a custom name for your generic Mendel,
-#define CUSTOM_MENDEL_NAME "3D Printer"
+#define CUSTOM_MENDEL_NAME "Orballo 3D Printer"
 
 // Define this to set a unique identifier for this printer, (Used by some programs to differentiate between machines)
 // You can use an online service to generate a random UUID. (eg http://www.uuidgenerator.net/version4)
@@ -80,7 +80,7 @@
 // 2 is 200k thermistor - ATC Semitec 204GT-2 (4.7k pullup)
 // 3 is Mendel-parts thermistor (4.7k pullup)
 // 4 is 10k thermistor !! do not use it for a hotend. It gives bad resolution at high temp. !!
-// 5 is 100K thermistor - ATC Semitec 104GT-2 (Used in ParCan & J-Head) (4.7k pullup)
+// 5 is 100K thermistor - ATC Semitec 104GT-2 (Used in ParCan & J-Head) (4.7k pullup)  - E3D V6 Lite Setting 
 // 6 is 100k EPCOS - Not as accurate as table 1 (created using a fluke thermocouple) (4.7k pullup)
 // 7 is 100k Honeywell thermistor 135-104LAG-J01 (4.7k pullup)
 // 71 is 100k Honeywell thermistor 135-104LAF-J01 (4.7k pullup)
@@ -104,7 +104,7 @@
 // 147 is Pt100 with 4k7 pullup
 // 110 is Pt100 with 1k pullup (non standard)
 
-#define TEMP_SENSOR_0 1
+#define TEMP_SENSOR_0 5  // Marlin setting for E3D V6 Lite
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_BED 1
@@ -121,7 +121,7 @@
 // The minimal temperature defines the temperature below which the heater will not be enabled It is used
 // to check that the wiring to the thermistor is not broken.
 // Otherwise this would lead to the heater being powered on all the time.
-#define HEATER_0_MINTEMP 0
+#define HEATER_0_MINTEMP 5  // E3D V6 Lite Setting
 #define HEATER_1_MINTEMP 0
 #define HEATER_2_MINTEMP 0
 #define BED_MINTEMP 0
@@ -129,10 +129,10 @@
 // When temperature exceeds max temp, your heater will be switched off.
 // This feature exists to protect your hotend from overheating accidentally, but *NOT* from thermistor short/failure!
 // You should use MINTEMP for thermistor short/failure protection.
-#define HEATER_0_MAXTEMP 275
+#define HEATER_0_MAXTEMP 245  // E3D V6 Lite
 #define HEATER_1_MAXTEMP 275
 #define HEATER_2_MAXTEMP 275
-#define BED_MAXTEMP 150
+#define BED_MAXTEMP 120
 
 // If your bed has low resistance e.g. .6 ohm and throws the fuse you can duty cycle it to reduce the
 // average current. The value should be an integer and the heat bed will be turned on for 1 interval of
@@ -318,7 +318,7 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 #define DISABLE_INACTIVE_EXTRUDER true //disable only inactive extruders and keep active extruder enabled
 
 #define INVERT_X_DIR true    // for Mendel set to false, for Orca set to true
-#define INVERT_Y_DIR false    // for Mendel set to true, for Orca set to false
+#define INVERT_Y_DIR true    // for Mendel set to true, for Orca set to false
 #define INVERT_Z_DIR true    // for Mendel set to false, for Orca set to true
 #define INVERT_E0_DIR false   // for direct drive extruder v9 set to true, for geared extruder set to false
 #define INVERT_E1_DIR false    // for direct drive extruder v9 set to true, for geared extruder set to false
@@ -327,16 +327,16 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 // ENDSTOP SETTINGS:
 // Sets direction of endstops when homing; 1=MAX, -1=MIN
 #define X_HOME_DIR -1
-#define Y_HOME_DIR 1
+#define Y_HOME_DIR -1
 #define Z_HOME_DIR -1
 
-#define min_software_endstops true // If true, axis won't move to coordinates less than HOME_POS.
+#define min_software_endstops false // If true, axis won't move to coordinates less than HOME_POS.
 #define max_software_endstops true  // If true, axis won't move to coordinates greater than the defined lengths below.
 
 // Travel limits after homing
-#define X_MAX_POS 210
+#define X_MAX_POS 205
 #define X_MIN_POS 0
-#define Y_MAX_POS 236
+#define Y_MAX_POS 205
 #define Y_MIN_POS 0
 #define Z_MAX_POS 200
 #define Z_MIN_POS 0
@@ -479,7 +479,7 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 
 // default settings
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {80,80,4000,146.9419152276296/2}  // default steps per unit for Ultimaker
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {159.267,79.63,5297,146.9419152276296/2}  // default steps per unit for Ultimaker
 #define DEFAULT_MAX_FEEDRATE          {250, 250, 3.3, 305}    // (mm/sec) {5000, 5000, 2, 25}
 #define DEFAULT_MAX_ACCELERATION      {3000,3000,100,10000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for Skeinforge 40+, for older versions raise them a lot.
 
