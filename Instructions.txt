@@ -1,0 +1,5 @@
+The Firmware is set for x16 Microstepping. This means that the jumpers on the RAMPS board must be configured depending on the driver.
+
+The A4988 Driver can be identified by a red or geen pcb. This driver requires all Jumper pins to be installed to signal x16 microstepping
+
+The DRV8825 Driver can be identified by its purple pcb. This driver requires the jumpers pis to be installed in a False, False, True configuration. This is configuration is counted from left to right starting from the power connectors.
