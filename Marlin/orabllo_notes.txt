@@ -1,0 +1,62 @@
+Notes on E-step calculations for this Orballo
+
+Z axis on Orballo 
+2x threaded rod M5x295 mm
+
+steps_per_mm = (motor_steps_per_rev * driver_microstep) / thread_pitch
+ // NEMA 17 with standard pitch M5 threaded rod:
+(200 * 16) / 0.8 = 4000
+
+However, since Z motors are using the newer stepper chip the calc is (200 * 32) / 0.8 = 8000
+
+Y e-steps
+based on 20 tooth pulley, T2 gates belt
+
+Esteps	Resolution	Teeth	Step angle	Stepping	Belt
+80.00	12.5micron	20		1.8°		1/16th		2mm
+88.695
+79.6829
+
+X e-steps
+
+Result	Resolution	Teeth	Step angle	Stepping	Belt
+160.00  6.25micron	20		1.8°		1/32th		2mm
+
+Current setting: 159.267 for X.
+Desired movement: 50mm
+Observed movement: 49.51
+Update setting: Desired / Observed X Current setting = New Setting
+50/49.51*159.267 = 1
+159.823
+
+M92 X159.823 Y79.6829 Z8000 E186.15
+
+Extruder gear diameter 11mm old gear was - 7.18mm
+
+Bowden Instructions from RepRap Champion:
+
+Calculating Esteps for the extruder is simple:
+
+Please take into an account filament gear driving diameter - 10.95 mm and calculate circumference of the gear - 10.95 x 3.14 =   34.38mm.
+Next calculation step will depend on the type of stepper motor you use and stepper driver setting. 
+Let's take widely used 1.8 deg/step stepper motor with stepper driver settings of 1/16 step. 
+
+1.8 deg/step stepper will have 200 steps per one full rotation. 
+We multiply that by 16, because 1/16 setting on the driver will give 16 times of 200. 16 x 200 = 3200 steps per rev with 1/16 stepper driver settings.
+Last step is calculate actual Estep parameter to put into firmware. It will be 3200 / 34.38mm = 93 steps per mm. Use this value in the firmware
+
+Note: since the extruder uses the newer motor driver the esteps is actually ( 200 * 32 ) / 34.38 = 186.15
+
+Comparison table
+The following table compares Made in China A4988 Stepper driver boards vs DRV8825 ones, for RepRap use:
+
+							A4988					DRV8825
+Availability				very widely available	widely available
+Approx. price				$6.80 / 5 pieces		$10 / 5 pieces
+Max. theoretical current	2A						2.5A
+Max. microsteps				16						32
+PCB color					Green / Red				Purple
+Stepper current adjust. trimpot	Yes, near Dir pin	Yes, near En pin
+Typical Rs value			0.05 Ohm or
+							0.1 Ohm or
+							0.2 Ohm					0.1 Ohm

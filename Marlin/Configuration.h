@@ -475,11 +475,11 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 
 //// MOVEMENT SETTINGS
 #define NUM_AXIS 4 // The axis order in all axis related arrays is X, Y, Z, E
-#define HOMING_FEEDRATE {2000, 2000, 125, 0}  // set the homing speeds (mm/min)
+#define HOMING_FEEDRATE {2000, 2000, 125, 0}  // set the homing speeds (mm/min) 
 
-// default settings
+// default settings  M92 X159.823 Y79.6829 Z8000 E194.149
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT   {159.267,79.63,5297,146.9419152276296/2}  // default steps per unit for Ultimaker
+#define DEFAULT_AXIS_STEPS_PER_UNIT   {159.823,79.6829,8000,194.149}  // default steps per unit for Ultimaker
 #define DEFAULT_MAX_FEEDRATE          {250, 250, 3.3, 305}    // (mm/sec) {5000, 5000, 2, 25}
 #define DEFAULT_MAX_ACCELERATION      {3000,3000,100,10000}    // X, Y, Z, E maximum start speed for accelerated moves. E default values are good for Skeinforge 40+, for older versions raise them a lot.
 
