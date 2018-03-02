@@ -14,8 +14,7 @@ based on 20 tooth pulley, T2 gates belt
 
 Esteps	Resolution	Teeth	Step angle	Stepping	Belt
 80.00	12.5micron	20		1.8°		1/16th		2mm
-88.695
-79.6829
+
 
 X e-steps
 
