@@ -104,7 +104,7 @@
 // 147 is Pt100 with 4k7 pullup
 // 110 is Pt100 with 1k pullup (non standard)
 
-#define TEMP_SENSOR_0 5  // Marlin setting for E3D V6 Lite
+#define TEMP_SENSOR_0 5  // Marlin setting for E3D V6 // changed 18Aug18 ph
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_BED 1
@@ -121,7 +121,7 @@
 // The minimal temperature defines the temperature below which the heater will not be enabled It is used
 // to check that the wiring to the thermistor is not broken.
 // Otherwise this would lead to the heater being powered on all the time.
-#define HEATER_0_MINTEMP 5  // E3D V6 Lite Setting
+#define HEATER_0_MINTEMP 5  // E3D V6 Setting // changed 19Aug18 ph
 #define HEATER_1_MINTEMP 0
 #define HEATER_2_MINTEMP 0
 #define BED_MINTEMP 0
@@ -129,7 +129,7 @@
 // When temperature exceeds max temp, your heater will be switched off.
 // This feature exists to protect your hotend from overheating accidentally, but *NOT* from thermistor short/failure!
 // You should use MINTEMP for thermistor short/failure protection.
-#define HEATER_0_MAXTEMP 245  // E3D V6 Lite
+#define HEATER_0_MAXTEMP 285  // E3D V6 // changed 19Aug18 ph
 #define HEATER_1_MAXTEMP 275
 #define HEATER_2_MAXTEMP 275
 #define BED_MAXTEMP 120
@@ -159,10 +159,10 @@
   #define PID_dT ((OVERSAMPLENR * 10.0)/(F_CPU / 64.0 / 256.0)) //sampling period of the temperature routine
 
 // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
-// Ultimaker
-    #define  DEFAULT_Kp 24.42
-    #define  DEFAULT_Ki 2.22
-    #define  DEFAULT_Kd 67.23
+// E3D V6 HotEnd - PID settings from PID tuning on 18Aug ph
+    #define  DEFAULT_Kp 23.45
+    #define  DEFAULT_Ki 1.92
+    #define  DEFAULT_Kd 71.5
 
 // MakerGear
 //    #define  DEFAULT_Kp 7.0
@@ -373,12 +373,12 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
     // set the rectangle in which to probe
     #define LEFT_PROBE_BED_POSITION 10
     #define RIGHT_PROBE_BED_POSITION 180
-    #define BACK_PROBE_BED_POSITION 190
-    #define FRONT_PROBE_BED_POSITION 70
+    #define BACK_PROBE_BED_POSITION 180 // hit leveling screw at 190 changed to 180 
+    #define FRONT_PROBE_BED_POSITION 10 // updated for Y axis
 
      // set the number of grid points per dimension
      // I wouldn't see a reason to go above 3 (=9 probing points on the bed)
-    #define AUTO_BED_LEVELING_GRID_POINTS 2
+    #define AUTO_BED_LEVELING_GRID_POINTS 3 // updated to 3 from 2
 
 
   #else  // not AUTO_BED_LEVELING_GRID
@@ -394,13 +394,30 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 
   #endif // AUTO_BED_LEVELING_GRID
 
-
+/**
+ *   Z Probe to nozzle (X,Y) offset, relative to (0, 0).
+ *   X and Y offsets must be integers.
+ *
+ *   In the following example the X and Y offsets are both positive:
+ *   #define X_PROBE_OFFSET_FROM_EXTRUDER 10
+ *   #define Y_PROBE_OFFSET_FROM_EXTRUDER 10
+ *
+ *      +-- BACK ---+
+ *      |           |
+ *    L |    (+) P  | R <-- probe (20,20)
+ *    E |           | I
+ *    F | (-) N (+) | G <-- nozzle (10,10)
+ *    T |           | H
+ *      |    (-)    | T
+ *      |           |
+ *      O-- FRONT --+
+ *    (0,0)
+ */
   // these are the offsets to the probe relative to the extruder tip (Hotend - Probe)
   // X and Y offsets must be integers
-  #define X_PROBE_OFFSET_FROM_EXTRUDER 28
-  #define Y_PROBE_OFFSET_FROM_EXTRUDER 8
-  #define Z_PROBE_OFFSET_FROM_EXTRUDER 0  //separación, modificar valor
-
+  #define X_PROBE_OFFSET_FROM_EXTRUDER 28 //
+  #define Y_PROBE_OFFSET_FROM_EXTRUDER 18 // updated from 8 - 2 Mar 2018
+  #define Z_PROBE_OFFSET_FROM_EXTRUDER 0  //
   #define Z_RAISE_BEFORE_HOMING 4       // (in mm) Raise Z before homing (G28) for Probe Clearance.
                                         // Be sure you have this distance over your Z_MAX_POS in case
 
