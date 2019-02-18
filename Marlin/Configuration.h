@@ -327,7 +327,7 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 // ENDSTOP SETTINGS:
 // Sets direction of endstops when homing; 1=MAX, -1=MIN
 #define X_HOME_DIR -1
-#define Y_HOME_DIR 1  // ph changed on 28Jan2019
+#define Y_HOME_DIR 1  // ph changed 28 Jan 2019
 #define Z_HOME_DIR -1
 
 #define min_software_endstops false // If true, axis won't move to coordinates less than HOME_POS.
@@ -337,7 +337,7 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
 #define X_MAX_POS 205
 #define X_MIN_POS 0
 #define Y_MAX_POS 205
-#define Y_MIN_POS 0
+#define Y_MIN_POS 20
 #define Z_MAX_POS 200
 #define Z_MIN_POS 0
 
@@ -371,10 +371,10 @@ const bool Z_MAX_ENDSTOP_INVERTING = true; // set to true to invert the logic of
   #ifdef AUTO_BED_LEVELING_GRID
 
     // set the rectangle in which to probe
-    #define LEFT_PROBE_BED_POSITION 10
+    #define LEFT_PROBE_BED_POSITION 15  //changed 3 feb 2019
     #define RIGHT_PROBE_BED_POSITION 180
-    #define BACK_PROBE_BED_POSITION 180 // hit leveling screw at 190 changed to 180 
-    #define FRONT_PROBE_BED_POSITION 10 // updated for Y axis
+    #define BACK_PROBE_BED_POSITION 180  // hit leveling screw at 190 changed to 180 
+    #define FRONT_PROBE_BED_POSITION 30  // updated for Y axis ph 18 Feb 2019
 
      // set the number of grid points per dimension
      // I wouldn't see a reason to go above 3 (=9 probing points on the bed)
